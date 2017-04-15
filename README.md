@@ -13,7 +13,8 @@ $ composer require adagio/class-finder
 ```php
 use Adagio\ClassFinder\ClassFinder;
 
-$classes = (new ClassFinder)->find('<?php
+$classes = (new ClassFinder)->find('
+<?php
 
 namespace Polite;
 
