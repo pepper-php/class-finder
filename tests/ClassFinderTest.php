@@ -4,7 +4,7 @@ namespace Adagio\Tests\ClassFinder;
 
 use Adagio\ClassFinder\ClassFinder;
 
-class ClassFinderTest extends \PHPUnit_Framework_TestCase
+class ClassFinderTest extends \PHPUnit\Framework\TestCase
 {
     function testNoClass()
     {
