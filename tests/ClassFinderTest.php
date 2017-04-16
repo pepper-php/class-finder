@@ -19,40 +19,56 @@ class ClassFinderTest extends \PHPUnit\Framework\TestCase
     {
         $finder = new ClassFinder;
 
-        $classes = $finder->find('<?php class Foo {}');
-        $this->assertEquals(['Foo'], $classes);
+        $this->assertEquals(
+                ['Foo'],
+                $finder->find('<?php class Foo {}'), 'Single class without namespace');
 
-        $classes = $finder->find('<?php class Foo {} class Bar {}');
-        $this->assertEquals(['Foo', 'Bar'], $classes);
+        $this->assertEquals(
+                ['Bar', 'Baz'],
+                $finder->find('<?php class Bar {} class Baz {}'), 'Two classes without namespace');
     }
 
     function testGlobalNamespace()
     {
         $finder = new ClassFinder;
 
-        $classes = $finder->find('<?php namespace { class Foo {} }');
-        $this->assertEquals(['Foo'], $classes);
+        $this->assertEquals(
+                ['Wat'],
+                $finder->find('<?php namespace { class Wat {} }'));
 
-        $classes = $finder->find('<?php namespace { class Foo {} class Bar {} }');
-        $this->assertEquals(['Foo', 'Bar'], $classes);
+        $this->assertEquals(
+                ['Alice', 'Bob'],
+                $finder->find('<?php namespace { class Alice {} class Bob {} }'));
     }
 
     function testNamespace()
     {
         $finder = new ClassFinder;
 
-        $classes = $finder->find('<?php namespace Foo { class Bar {} }');
-        $this->assertEquals(['Foo\\Bar'], $classes);
+        $this->assertEquals(
+                ['My\\Example\\Name'],
+                $finder->find('<?php namespace My\Example { class Name {} }'));
 
-        $classes = $finder->find('<?php namespace Foo { class Bar {} class Baz {} }');
-        $this->assertEquals(['Foo\\Bar', 'Foo\\Baz'], $classes);
+        $this->assertEquals(
+                ['Another\\One', 'Another\\Two'],
+                $finder->find('<?php namespace Another { class One {} class Two {} }'));
     }
 
     function testSeveralNamespaces()
     {
         $finder = new ClassFinder;
 
-        $classes = $finder->find('<?php namespace Foo { class Bar {} } namespace Baz { class Bar {} }');
-        $this->assertEquals(['Foo\\Bar', 'Baz\\Bar'], $classes);
+        $this->assertEquals(
+                ['This\\Test', 'That\\Other\Test'],
+                $finder->find('<?php namespace This { class Test {} } namespace That\Other { class Test {} }'));
+    }
+
+    function testClassSpecialConstant()
+    {
+        $finder = new ClassFinder;
+
+        $this->assertEquals(
+                ['FooBar'],
+                $finder->find('<?php class FooBar {} echo FooBar::class;'));
     }
 }
