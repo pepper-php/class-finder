@@ -1,6 +1,6 @@
 <?php
 
-namespace Adagio\ClassFinder;
+namespace Pepper\ClassFinder;
 
 final class ClassFinder
 {

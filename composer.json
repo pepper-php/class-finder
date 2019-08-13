@@ -1,19 +1,19 @@
 {
-    "name": "adagio/class-finder",
+    "name": "pepper/class-finder",
     "description": "Find classes in PHP source code.",
     "type": "library",
     "keywords": ["source", "code", "class", "finder", "parse"],
-    "homepage": "https://github.com/adagio/class-finder",
+    "homepage": "https://github.com/pepper/class-finder",
     "license": "MIT",
     "authors": [
         {
             "name": "Keven Godet",
-            "email": "keven@adagiolabs.fr"
+            "email": "hello@kevens.fr"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Adagio\\ClassFinder\\": "src"
+            "Pepper\\ClassFinder\\": "src"
         }
     },
     "require-dev": {

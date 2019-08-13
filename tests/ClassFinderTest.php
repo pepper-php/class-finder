@@ -1,8 +1,8 @@
 <?php
 
-namespace Adagio\Tests\ClassFinder;
+namespace Pepper\Tests\ClassFinder;
 
-use Adagio\ClassFinder\ClassFinder;
+use Pepper\ClassFinder\ClassFinder;
 
 class ClassFinderTest extends \PHPUnit\Framework\TestCase
 {
